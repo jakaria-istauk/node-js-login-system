@@ -4,12 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-var connection = mysql.createConnection({
-  host  : 'localhost',
-  user  :'root',
-  password:'',
-  database:'nodelogin'
-});
+var connection = require('./config');
 
 var app = express();
 
@@ -21,7 +16,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/', function(request, response) {
+app.get('/login.html', function(request, response) {
   response.sendFile(path.join(__dirname+'/login.html'));
 });
 
